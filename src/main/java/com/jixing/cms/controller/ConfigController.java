@@ -1,7 +1,6 @@
 package com.jixing.cms.controller;
 
 import com.jixing.cms.mapper.ConfigMapper;
-import com.jixing.cms.model.Banner;
 import com.jixing.cms.model.Config;
 import com.jixing.cms.vo.response.BasePageResponse;
 import com.jixing.cms.vo.response.BaseResponse;
@@ -20,26 +19,30 @@ public class ConfigController {
 
     @RequestMapping("add")
     @ResponseBody
-    BaseResponse add(@RequestBody Banner banner){
+    BaseResponse add(@RequestBody Config config){
+        configMapper.insertSelective(config);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("delete")
     @ResponseBody
     BaseResponse delete(@RequestParam("id") Integer id){
+        configMapper.deleteByPrimaryKey(id);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("update")
     @ResponseBody
-    BaseResponse update(@RequestBody Banner banner){
+    BaseResponse update(@RequestBody Config banner){
+        configMapper.updateByPrimaryKeySelective(banner);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("find")
     @ResponseBody
     BaseResponse find(@RequestParam("id") Integer id){
-        return BaseResponse.success(null);
+        Config config = configMapper.selectByPrimaryKey(id);
+        return BaseResponse.success(config);
     }
 
     @RequestMapping("all")

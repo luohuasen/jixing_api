@@ -1,7 +1,6 @@
 package com.jixing.cms.controller;
 
 import com.jixing.cms.mapper.ServiceMapper;
-import com.jixing.cms.model.Banner;
 import com.jixing.cms.model.Service;
 import com.jixing.cms.vo.response.BasePageResponse;
 import com.jixing.cms.vo.response.BaseResponse;
@@ -20,26 +19,30 @@ public class ServiceController {
 
     @RequestMapping("add")
     @ResponseBody
-    BaseResponse add(@RequestBody Banner banner){
+    BaseResponse add(@RequestBody Service service){
+        serviceMapper.insertSelective(service);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("delete")
     @ResponseBody
     BaseResponse delete(@RequestParam("id") Integer id){
+        serviceMapper.deleteByPrimaryKey(id);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("update")
     @ResponseBody
-    BaseResponse update(@RequestBody Banner banner){
+    BaseResponse update(@RequestBody Service service){
+        serviceMapper.updateByPrimaryKeySelective(service);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("find")
     @ResponseBody
     BaseResponse find(@RequestParam("id") Integer id){
-        return BaseResponse.success(null);
+        Service service = serviceMapper.selectByPrimaryKey(id);
+        return BaseResponse.success(service);
     }
 
     @RequestMapping("all")

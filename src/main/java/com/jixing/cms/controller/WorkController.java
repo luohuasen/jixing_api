@@ -1,7 +1,6 @@
 package com.jixing.cms.controller;
 
 import com.jixing.cms.mapper.WorkMapper;
-import com.jixing.cms.model.Banner;
 import com.jixing.cms.model.Work;
 import com.jixing.cms.vo.response.BasePageResponse;
 import com.jixing.cms.vo.response.BaseResponse;
@@ -20,26 +19,30 @@ public class WorkController {
 
     @RequestMapping("add")
     @ResponseBody
-    BaseResponse add(@RequestBody Banner banner){
+    BaseResponse add(@RequestBody Work work){
+        workMapper.insertSelective(work);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("delete")
     @ResponseBody
     BaseResponse delete(@RequestParam("id") Integer id){
+        workMapper.deleteByPrimaryKey(id);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("update")
     @ResponseBody
-    BaseResponse update(@RequestBody Banner banner){
+    BaseResponse update(@RequestBody Work work){
+        workMapper.updateByPrimaryKeySelective(work);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("find")
     @ResponseBody
     BaseResponse find(@RequestParam("id") Integer id){
-        return BaseResponse.success(null);
+        Work work = workMapper.selectByPrimaryKey(id);
+        return BaseResponse.success(work);
     }
 
     @RequestMapping("all")

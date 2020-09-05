@@ -99,18 +99,7 @@
   </select>
 
   <select id="count" resultType="int">
-    select count(1) from user;
-  </select>
-
-  <select id="list" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from user
-    limit #{pageIndex}, #{pageSize}
-  </select>
-
-  <select id="count" resultType="int">
-    select count(1) from user;
+    select count(1) from user
   </select>
 
   <select id="list" resultMap="BaseResultMap">

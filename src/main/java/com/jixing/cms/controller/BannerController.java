@@ -20,25 +20,29 @@ public class BannerController {
     @RequestMapping("add")
     @ResponseBody
     BaseResponse add(@RequestBody Banner banner){
+        bannerMapper.insertSelective(banner);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("delete")
     @ResponseBody
     BaseResponse delete(@RequestParam("id") Integer id){
+        bannerMapper.deleteByPrimaryKey(id);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("update")
     @ResponseBody
     BaseResponse update(@RequestBody Banner banner){
+        bannerMapper.updateByPrimaryKeySelective(banner);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("find")
     @ResponseBody
     BaseResponse find(@RequestParam("id") Integer id){
-        return BaseResponse.success(null);
+        Banner banner = bannerMapper.selectByPrimaryKey(id);
+        return BaseResponse.success(banner);
     }
 
     @RequestMapping("all")

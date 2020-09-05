@@ -1,7 +1,6 @@
 package com.jixing.cms.controller;
 
 import com.jixing.cms.mapper.ProductMapper;
-import com.jixing.cms.model.Banner;
 import com.jixing.cms.model.Product;
 import com.jixing.cms.vo.response.BasePageResponse;
 import com.jixing.cms.vo.response.BaseResponse;
@@ -20,26 +19,30 @@ public class ProductController {
 
     @RequestMapping("add")
     @ResponseBody
-    BaseResponse add(@RequestBody Banner banner){
+    BaseResponse add(@RequestBody Product product){
+        productMapper.insertSelective(product);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("delete")
     @ResponseBody
     BaseResponse delete(@RequestParam("id") Integer id){
+        productMapper.deleteByPrimaryKey(id);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("update")
     @ResponseBody
-    BaseResponse update(@RequestBody Banner banner){
+    BaseResponse update(@RequestBody Product product){
+        productMapper.updateByPrimaryKeySelective(product);
         return BaseResponse.success(null);
     }
 
     @RequestMapping("find")
     @ResponseBody
     BaseResponse find(@RequestParam("id") Integer id){
-        return BaseResponse.success(null);
+        Product product = productMapper.selectByPrimaryKey(id);
+        return BaseResponse.success(product);
     }
 
     @RequestMapping("all")
