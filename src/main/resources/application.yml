@@ -16,3 +16,5 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.jixing.cms.model
   configuration.map-underscore-to-camel-case: true
+uploadPath: D:\javas\sources\
+serverUrl: http://www.jixing.com/

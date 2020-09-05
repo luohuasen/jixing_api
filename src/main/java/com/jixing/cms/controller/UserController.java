@@ -69,7 +69,8 @@ public class UserController {
 
     @RequestMapping("all")
     @ResponseBody
-    public BasePageResponse all(@RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize){
+    public BasePageResponse all(@RequestParam(value = "pageNum",required = false, defaultValue = "1") Integer pageNum,
+                                @RequestParam(value = "pageSize",required = false, defaultValue = "20") Integer pageSize){
         int count = userMapper.count();
         if(count == 0){
             return BasePageResponse.fail("没有用户");

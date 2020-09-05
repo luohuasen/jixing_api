@@ -9,13 +9,12 @@
     <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, type, key, value, description
+    id, key, value, description
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
-    <include refid="Base_Column_List" />
-    from config
-    where id = #{id,jdbcType=INTEGER}
+    *
+    from config where id = #{id}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from config
@@ -96,9 +95,6 @@
   </select>
 
   <select id="list" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from config
-    limit #{pageIndex}, #{pageSize}
+    select * from config limit #{pageIndex}, #{pageSize}
   </select>
 </mapper>
