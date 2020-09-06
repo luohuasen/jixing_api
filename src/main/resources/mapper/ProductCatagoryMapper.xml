@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jixing.cms.mapper.ProductCatagoryMapper" >
-  <resultMap id="BaseResultMap" type="com.jixing.cms.model.ProductCatagoryKey" >
-    <id column="sub_catagory_id" property="subCatagoryId" jdbcType="INTEGER" />
-    <id column="product_id" property="productId" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jixing.cms.mapper.ProductCatagoryMapper">
+  <resultMap id="BaseResultMap" type="com.jixing.cms.model.ProductCatagoryKey">
+    <id column="sub_catagory_id" jdbcType="INTEGER" property="subCatagoryId" />
+    <id column="product_id" jdbcType="INTEGER" property="productId" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="com.jixing.cms.model.ProductCatagoryKey" >
+  <delete id="deleteByPrimaryKey" parameterType="com.jixing.cms.model.ProductCatagoryKey">
     delete from product_catagory
     where sub_catagory_id = #{subCatagoryId,jdbcType=INTEGER}
       and product_id = #{productId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jixing.cms.model.ProductCatagoryKey" >
+  <insert id="insert" parameterType="com.jixing.cms.model.ProductCatagoryKey">
     insert into product_catagory (sub_catagory_id, product_id)
     values (#{subCatagoryId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.jixing.cms.model.ProductCatagoryKey" >
+  <insert id="insertSelective" parameterType="com.jixing.cms.model.ProductCatagoryKey">
     insert into product_catagory
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="subCatagoryId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subCatagoryId != null">
         sub_catagory_id,
       </if>
-      <if test="productId != null" >
+      <if test="productId != null">
         product_id,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="subCatagoryId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subCatagoryId != null">
         #{subCatagoryId,jdbcType=INTEGER},
       </if>
-      <if test="productId != null" >
+      <if test="productId != null">
         #{productId,jdbcType=INTEGER},
       </if>
     </trim>

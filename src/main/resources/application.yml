@@ -6,7 +6,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://localhost:3306/jixing
+    url: jdbc:mysql://localhost:3306/jixing?useUnicode=true&characterEncoding=utf8
     driver-class-name: com.mysql.jdbc.Driver
   servlet:
     multipart:

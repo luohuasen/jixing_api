@@ -1,78 +1,78 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jixing.cms.mapper.ProductInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.jixing.cms.model.ProductInfo" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="product_title" property="productTitle" jdbcType="VARCHAR" />
-    <result column="icon" property="icon" jdbcType="VARCHAR" />
-    <result column="body" property="body" jdbcType="LONGVARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jixing.cms.mapper.ProductInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jixing.cms.model.ProductInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_title" jdbcType="VARCHAR" property="productTitle" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="body" jdbcType="LONGVARCHAR" property="body" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, product_title, icon, body
   </sql>
 
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from product_info
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from product_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jixing.cms.model.ProductInfo" >
+  <insert id="insert" parameterType="com.jixing.cms.model.ProductInfo">
     insert into product_info (id, product_title, icon, body)
     values (#{id,jdbcType=INTEGER}, #{productTitle,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
       #{body,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jixing.cms.model.ProductInfo" >
+  <insert id="insertSelective" parameterType="com.jixing.cms.model.ProductInfo">
     insert into product_info
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="productTitle != null" >
+      <if test="productTitle != null">
         product_title,
       </if>
-      <if test="icon != null" >
+      <if test="icon != null">
         icon,
       </if>
-      <if test="body != null" >
+      <if test="body != null">
         body,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="productTitle != null" >
+      <if test="productTitle != null">
         #{productTitle,jdbcType=VARCHAR},
       </if>
-      <if test="icon != null" >
+      <if test="icon != null">
         #{icon,jdbcType=VARCHAR},
       </if>
-      <if test="body != null" >
+      <if test="body != null">
         #{body,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jixing.cms.model.ProductInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.jixing.cms.model.ProductInfo">
     update product_info
-    <set >
-      <if test="productTitle != null" >
+    <set>
+      <if test="productTitle != null">
         product_title = #{productTitle,jdbcType=VARCHAR},
       </if>
-      <if test="icon != null" >
+      <if test="icon != null">
         icon = #{icon,jdbcType=VARCHAR},
       </if>
-      <if test="body != null" >
+      <if test="body != null">
         body = #{body,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jixing.cms.model.ProductInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.jixing.cms.model.ProductInfo">
     update product_info
     set product_title = #{productTitle,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
@@ -104,5 +104,18 @@
     from product_info i
     JOIN product_catagory c ON i.id = c.product_id
     where c.sub_catagory_id = #{cataId};
+  </select>
+
+  <select id="countUnRelatedBySubCata" resultType="int">
+    select count(1)
+    from product_info i
+    WHERE NOT EXISTS (SELECT * FROM product_catagory c WHERE c.product_id = i.id AND c.sub_catagory_id = #{cataId});
+  </select>
+
+  <select id="listUnRelatedBySubCata" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product_info i
+    WHERE NOT EXISTS (SELECT * FROM product_catagory c WHERE c.product_id = i.id AND c.sub_catagory_id = #{cataId});
   </select>
 </mapper>

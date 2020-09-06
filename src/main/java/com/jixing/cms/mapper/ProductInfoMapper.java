@@ -27,4 +27,8 @@ public interface ProductInfoMapper {
     int countBySubCata(@Param("cataId") Integer cataId);
 
     List<ProductInfo> listBySubCata(@Param("cataId") Integer cataId);
+
+    int countUnRelatedBySubCata(@Param("cataId") Integer cataId);
+
+    List<ProductInfo> listUnRelatedBySubCata(@Param("cataId") Integer cataId);
 }
