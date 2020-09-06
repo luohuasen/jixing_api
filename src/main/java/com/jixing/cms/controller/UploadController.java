@@ -38,7 +38,7 @@ public class UploadController {
             log.error("save Image error {}", e);
             return BaseResponse.fail("save Image error");
         }
-        String publicPath = serverUrl + "uploads/" + sourceId;
+        String publicPath = serverUrl + "sources/" + sourceId;
         return BaseResponse.success(publicPath);
     }
 }

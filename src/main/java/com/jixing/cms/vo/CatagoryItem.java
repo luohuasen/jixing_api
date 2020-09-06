@@ -9,9 +9,9 @@ import java.util.List;
 
 @Data
 public class CatagoryItem extends Catagory {
-    private List<SubCatagory> itemList = new ArrayList<>();
+    private List<SubCatagory> subList = new ArrayList<>();
 
     public void addSubCataGory(SubCatagory subCatagory){
-        itemList.add(subCatagory);
+        subList.add(subCatagory);
     }
 }
