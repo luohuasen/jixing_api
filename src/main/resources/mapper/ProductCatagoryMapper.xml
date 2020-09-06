@@ -15,7 +15,7 @@
     values (#{subCatagoryId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jixing.cms.model.ProductCatagoryKey">
-    insert into product_catagory
+    insert ignore into product_catagory
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="subCatagoryId != null">
         sub_catagory_id,

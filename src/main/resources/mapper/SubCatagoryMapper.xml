@@ -98,4 +98,11 @@
     where catagory_id = #{id}
     order by display_order desc
   </select>
+
+  <select id="listAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sub_catagory
+    order by display_order desc
+  </select>
 </mapper>

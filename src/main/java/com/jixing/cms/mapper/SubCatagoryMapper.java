@@ -25,4 +25,7 @@ public interface SubCatagoryMapper {
      * @return
      */
     List<SubCatagory> list(Integer id);
+
+
+    List<SubCatagory> listAll();
 }

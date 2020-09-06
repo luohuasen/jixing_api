@@ -1,6 +1,7 @@
 package com.jixing.cms.mapper;
 
 import com.jixing.cms.model.Catagory;
+import com.jixing.cms.vo.CatagoryItem;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,5 +20,5 @@ public interface CatagoryMapper {
 
     int updateByPrimaryKey(Catagory record);
 
-    List<Catagory> list();
+    List<CatagoryItem> list();
 }
