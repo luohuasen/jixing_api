@@ -31,6 +31,11 @@ public class UploadController {
         String filename = file.getOriginalFilename();
         String extName = filename.substring(filename.lastIndexOf("."));
         String sourceId = dateFormat + "/" + uuid + extName;
+        String dirName = uploadPath + dateFormat;
+        File dir = new File(dirName);
+        if(!dir.exists()){
+            dir.mkdir();
+        }
         String savePath = uploadPath + sourceId;
         try {
             file.transferTo(new File(savePath));

@@ -6,7 +6,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://localhost:3306/jixing?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/jixing?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false
     driver-class-name: com.mysql.jdbc.Driver
   servlet:
     multipart:
@@ -16,5 +16,5 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.jixing.cms.model
   configuration.map-underscore-to-camel-case: true
-uploadPath: D:\javas\sources\
-serverUrl: https://106.52.26.157/
+uploadPath: C:\work\sources\
+serverUrl: http://jxggzs.cn/
